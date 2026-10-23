@@ -68,6 +68,12 @@ body{background:#0b0c0b}.shell{width:min(1440px,calc(100% - 80px))}.ambient{back
 /* Keyboard actions are immediate; pointer toggles can reverse the current transition. */
 .dashboard.settings-motion-instant>.left-column,.dashboard.settings-motion-instant .settings,.dashboard.settings-motion-instant.settings-collapsed .settings,.dashboard.settings-motion-instant .settings-rail,.settings-reopen.settings-motion-instant{transition:none}
 @media(prefers-reduced-motion:reduce){.achievement,.achievement.show,.toast,.toast.show{transform:translate(-50%,0);transition:opacity 120ms ease}.calendar-day:hover,.icon-button:hover,.demo-button:hover{transform:none}.icon-button,.demo-button,.salary-input,.salary-presets button,.step-button,.schedule-trigger,.interval-input,.interval-presets button,.calendar-nav-button,.calendar-presets button,.calendar-day,.meal-break-card,.meal-switch>span,.meal-switch>span::after,.shift-break-item{transition-duration:120ms}.meal-switch>span::after{transition:none}}
+
+/* Music choices reuse the existing compact settings dialog. */
+#music-details[hidden]{display:none}.music-dialog{width:min(420px,calc(100vw - 24px))}.music-dialog .dialog-top{margin-bottom:16px}.music-dialog .music-fieldset{margin-bottom:14px}.music-fieldset{min-width:0;margin:0 0 18px;padding:0;border:0}.music-fieldset legend,.music-volume-label{padding:0;margin-bottom:10px;color:#b5aa8e;font-size:12px}.music-modes{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border:.5px solid #c5aa6233;border-radius:9px;background:#080a0766}.music-mode{position:relative;cursor:pointer;min-height:38px;display:grid;place-items:center;border-radius:5px;font-size:12px;color:#a69e88}.music-mode:has(input:checked){background:#dfbc7020;color:#f0d699}.music-mode input,.music-track input{position:absolute;opacity:0;width:1px;height:1px}.music-mode:has(input:focus-visible),.music-track:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:3px}.music-tracks{display:grid;gap:8px}.music-track{position:relative;display:flex;align-items:center;gap:12px;padding:12px 14px;border:.5px solid #c5aa622b;border-radius:8px;cursor:pointer;background:#ffffff02;color:#b5aa8e}.music-track:has(input:checked){border-color:#d9b66b99;background:#d9b66b0e;color:#efd39b}.music-track>svg{width:21px;height:21px;flex:none}.music-track-copy{display:flex;flex:1;align-items:baseline;flex-wrap:wrap;gap:2px 10px}.music-track-copy strong{font-size:14px;line-height:1.4;font-weight:500;color:inherit}.music-track-copy small{font-size:12px;line-height:1.4;color:#9f967e}.music-track .music-track-check{width:17px;height:17px;opacity:0}.music-track:has(input:checked) .music-track-check{opacity:1}.music-volume-label{display:flex;align-items:center;justify-content:space-between;gap:16px}.music-volume-label output{color:#e1c68e;font-family:var(--num)}.music-volume{width:100%;height:22px;margin:0;accent-color:#ddbc76;cursor:pointer}.music-footer{border-top:.5px solid #c5aa622b;margin-top:16px;padding-top:14px}.music-footer-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:13px}.music-status{font-size:12px;color:#a9a18a;margin:0}.music-preview{display:flex;align-items:center;gap:6px;padding:5px 0;border:0;background:transparent;color:#dcc184;font-size:12px}.music-preview svg{width:14px;height:14px}.music-toggle{width:100%;min-height:42px;border:.5px solid #e6c48188;border-radius:8px;background:#dfbc7015;color:#efd39b;font-size:14px}.music-toggle[aria-pressed="true"]{border-color:#c5aa6244;background:transparent;color:#c1b89f}@media(hover:hover) and (pointer:fine){.music-track:hover{border-color:#d9b66b77}.music-toggle:hover{background:#dfbc7025}.music-preview:hover{color:#fff0bd}}@media(max-width:380px){.topbar{gap:10px}.top-right{gap:5px}.local-clock time{font-size:11px}}@media(prefers-reduced-motion:no-preference){.music-mode,.music-track,.music-toggle{transition:background var(--motion-fast) var(--ease),color var(--motion-fast) var(--ease)}}
+
+/* Two independent comets stay behind content; only transforms and opacity move. */
+:root{--ease-in-out:cubic-bezier(.77,0,.175,1)}.ambient{z-index:-2}.meteor-layer{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;contain:strict}.meteor-layer[hidden]{display:none}.meteor-core,.meteor-tail{position:absolute;left:0;top:0;opacity:0;pointer-events:none;will-change:transform,opacity;transform-origin:0 0}.meteor-core{width:5px;height:5px;border-radius:50%;background:#fff2c9;box-shadow:0 0 7px #f3d38e,0 0 18px #d6b46b88}.meteor-tail{border-radius:50%;background:linear-gradient(90deg,transparent,var(--gold));filter:blur(.6px)}@media(prefers-reduced-motion:reduce){.meteor-layer{display:none}}
 </style>
 </head>
 <body>
@@ -81,6 +87,7 @@ body{background:#0b0c0b}.shell{width:min(1440px,calc(100% - 80px))}.ambient{back
 <symbol id="i-tune" viewBox="0 0 24 24"><path d="M4 7h9m4 0h3M4 17h3m4 0h9"></path><circle cx="15" cy="7" r="2"></circle><circle cx="9" cy="17" r="2"></circle></symbol>
 <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 10 7-10 7V5Z"></path></symbol>
 <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"></path></symbol>
+<symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13M9 9l11-2"></path><ellipse cx="6" cy="18" rx="3" ry="2.5"></ellipse><ellipse cx="17" cy="16" rx="3" ry="2.5"></ellipse></symbol>
 <symbol id="i-volume" viewBox="0 0 24 24"><path d="m11 4-5 4H3v8h3l5 4V4Z"></path><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"></path></symbol>
 <symbol id="i-mute" viewBox="0 0 24 24"><path d="m11 4-5 4H3v8h3l5 4V4Z"></path><path d="m16 9 5 6m0-6-5 6"></path></symbol>
 <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 4H4v5m11-5h5v5M4 15v5h5m6 0h5v-5"></path></symbol>
@@ -93,10 +100,11 @@ body{background:#0b0c0b}.shell{width:min(1440px,calc(100% - 80px))}.ambient{back
 <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></symbol>
 </defs></svg>
 <div class="ambient" aria-hidden="true"><div class="beam"></div><div id="dust"></div></div>
+<div class="meteor-layer" id="meteor-layer" aria-hidden="true"></div>
 <div class="shell">
 <header class="topbar reveal">
 <a class="brand" href="#" aria-label="薪动首页"><span class="brand-mark" aria-hidden="true"><b data-currency-symbol>¥</b></span><span><span class="brand-name">薪动</span><span class="brand-sub" style="display:block" lang="en">Golden Hour</span></span></a>
-<div class="top-right"><div class="local-clock"><span class="date-text" id="date-text"></span><span class="clock-sep"></span><time id="local-time" class="number">00:00:00</time></div><div class="toolbar"><button class="icon-button" id="sound-button" aria-label="开启金币音效" aria-pressed="false" title="开启金币音效"><svg><use id="sound-icon" href="#i-mute"></use></svg></button><button class="icon-button" id="fullscreen-button" aria-label="进入全屏" title="进入全屏"><svg><use href="#i-expand"></use></svg></button></div></div>
+<div class="top-right"><div class="local-clock"><span class="date-text" id="date-text"></span><span class="clock-sep"></span><time id="local-time" class="number">00:00:00</time></div><div class="toolbar"><button class="icon-button" id="sound-button" aria-label="开启声音" aria-pressed="false" title="开启声音"><svg><use id="sound-icon" href="#i-mute"></use></svg></button><button type="button" class="icon-button" id="music-settings-button" aria-label="声音设置" aria-haspopup="dialog" aria-controls="music-dialog" title="声音设置"><svg aria-hidden="true"><use href="#i-music"></use></svg></button><button class="icon-button" id="fullscreen-button" aria-label="进入全屏" title="进入全屏"><svg><use href="#i-expand"></use></svg></button></div></div>
 <!-- Keep the gear at its page-header position while the document scrolls. -->
 <button type="button" class="settings-reopen" id="settings-reopen" aria-controls="settings-panel" aria-expanded="true" aria-label="展开薪资设置" title="展开薪资设置" hidden><svg aria-hidden="true"><use href="#i-settings"></use></svg></button>
 </header>
@@ -118,6 +126,16 @@ body{background:#0b0c0b}.shell{width:min(1440px,calc(100% - 80px))}.ambient{back
 <div class="toast" id="toast" role="status"></div>
 <dialog id="formula-dialog" aria-labelledby="formula-title"><div class="dialog-top"><h2 id="formula-title">让每一秒，明码标价。</h2><button class="icon-button" id="dialog-close" aria-label="关闭计算说明"><svg><use href="#i-close"></use></svg></button></div><p class="formula">秒薪 = 月薪 ÷ 每月工作天数 ÷ 每天净计薪秒数<br>本班收入 = 秒薪 × 本班已计薪秒数</p><p id="formula-example"></p><p class="dialog-fine">净计薪时间 = 上下班时长 − 已启用的午休与晚休。只扣除与班次重叠的休息，重叠部分只扣一次；用餐休息期间暂停累计。工作时段之外停止累计，上限为单日工资。跨午夜班次归属开工日。保存工作日期后，按开工日对应月份的排班天数折算日薪，休息日自动停止计薪；未设置的月份优先使用已收录的中国大陆放假调休安排，未收录年份按周一至周五生成并提示核对。已保存的月份优先使用手动排班，可在日历中点击“识别放假安排”重新应用本月国家安排。首次保存前保留原有计薪设置。</p><p class="dialog-fine">演示模式使用 120 倍虚拟时间，展示金额独立于真实计薪。设置仅保存在当前浏览器，不会上传。</p></dialog>
 <dialog class="calendar-dialog" id="schedule-dialog" aria-labelledby="calendar-title" aria-describedby="calendar-intro"><div class="dialog-top"><div><span class="calendar-kicker" lang="en">YOUR WORK CALENDAR</span><h2 id="calendar-title">把工作的日子，安排好。</h2></div><button type="button" class="icon-button" id="calendar-close" aria-label="关闭工作日历"><svg><use href="#i-close"></use></svg></button></div><p class="calendar-intro" id="calendar-intro">点选具体日期，金色的日子才计薪。</p><div class="calendar-nav"><button type="button" class="calendar-nav-button" id="calendar-prev" aria-label="上个月"><svg><use href="#i-chevron"></use></svg></button><div class="calendar-month-group"><h3 id="calendar-month-label">2026 年 10 月</h3><button type="button" id="calendar-current">回到本班月份</button></div><button type="button" class="calendar-nav-button" id="calendar-next" aria-label="下个月"><svg><use href="#i-chevron"></use></svg></button></div><div class="calendar-holiday-row"><button type="button" id="calendar-recognize"><svg aria-hidden="true"><use href="#i-calendar"></use></svg><span>识别放假安排</span><small>应用本月</small></button><a id="calendar-holiday-source" href="https://www.gov.cn/zhengce/content/202511/content_7047090.htm" target="_blank" rel="noopener noreferrer">国务院安排 ↗</a></div><p class="calendar-holiday-status" id="calendar-holiday-status" role="status"></p><div class="calendar-presets" role="group" aria-label="批量设置本月工作日期"><button type="button" data-calendar-preset="weekdays">周一至周五</button><button type="button" data-calendar-preset="six-days">周一至周六</button><button type="button" data-calendar-preset="all">全选</button><button type="button" data-calendar-preset="clear">清空</button></div><div class="calendar-weekdays" aria-hidden="true"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div class="calendar-grid" id="calendar-grid" role="group" aria-label="本月工作日期"></div><div class="calendar-legend"><span><i class="calendar-selected-mark"></i>工作日</span><span><i></i>休息日</span><span><i class="calendar-today-mark"></i>今天</span><span><b class="holiday-legend-badge">休</b>放假</span><span><b class="holiday-legend-badge is-makeup">班</b>补班</span></div><div class="calendar-selection-summary"><span id="calendar-count" role="status">本月已选 22 天</span><small id="calendar-selection-note">保存后自动统计工作天数</small></div><p class="calendar-note" id="calendar-note">已收录 2025、2026 年中国大陆放假调休安排，支持逐日调整。</p><div class="calendar-actions"><button type="button" class="calendar-cancel" id="calendar-cancel">取消</button><button type="button" class="calendar-save" id="calendar-save">保存工作日期<svg><use href="#i-check"></use></svg></button></div></dialog>
+<dialog class="settings-dialog music-dialog" id="music-dialog" aria-labelledby="music-dialog-title"><div class="dialog-top"><h2 id="music-dialog-title">声音设置</h2><button type="button" class="icon-button" id="music-dialog-close" aria-label="关闭声音设置"><svg aria-hidden="true"><use href="#i-close"></use></svg></button></div>
+<fieldset class="music-fieldset"><legend>声音类型</legend><div class="music-modes"><label class="music-mode"><input type="radio" name="sound-type" value="coin" checked><span>金币音效</span></label><label class="music-mode"><input type="radio" name="sound-type" value="music"><span>轻音乐</span></label></div></fieldset>
+<div id="music-details" hidden>
+<fieldset class="music-fieldset"><legend>播放模式</legend><div class="music-modes"><label class="music-mode"><input type="radio" name="music-mode" value="rain" checked><span>金币雨时</span></label><label class="music-mode"><input type="radio" name="music-mode" value="continuous"><span>持续播放</span></label></div></fieldset>
+<fieldset class="music-fieldset"><legend>选择曲目</legend><div class="music-tracks">
+<label class="music-track"><input type="radio" name="music-track" value="afternoon" checked><svg aria-hidden="true"><use href="#i-music"></use></svg><span class="music-track-copy"><strong>午后微光</strong><small>柔和钢琴</small></span><svg class="music-track-check" aria-hidden="true"><use href="#i-check"></use></svg></label>
+<label class="music-track"><input type="radio" name="music-track" value="clouds"><svg aria-hidden="true"><use href="#i-music"></use></svg><span class="music-track-copy"><strong>云间漫步</strong><small>空灵钟琴</small></span><svg class="music-track-check" aria-hidden="true"><use href="#i-check"></use></svg></label>
+<label class="music-track"><input type="radio" name="music-track" value="night"><svg aria-hidden="true"><use href="#i-music"></use></svg><span class="music-track-copy"><strong>夜色轻舟</strong><small>温暖木琴</small></span><svg class="music-track-check" aria-hidden="true"><use href="#i-check"></use></svg></label>
+</div></fieldset></div><label class="music-volume-label" for="music-volume"><span>音量</span><output id="music-volume-value" for="music-volume">45%</output></label><input type="range" class="music-volume" id="music-volume" min="0" max="100" step="1" value="45">
+<div class="music-footer"><div class="music-footer-top"><p class="music-status" id="music-status" role="status">声音已关闭</p><button type="button" class="music-preview" id="music-preview"><svg aria-hidden="true"><use id="music-preview-icon" href="#i-play"></use></svg><span id="music-preview-label">试听</span></button></div><button type="button" class="music-toggle" id="music-toggle" aria-pressed="false">开启声音</button></div></dialog>
 <dialog class="settings-dialog" id="meal-dialog" aria-labelledby="meal-dialog-title" aria-describedby="meal-dialog-intro"><div class="dialog-top"><div><span class="settings-dialog-kicker" lang="en">PAUSE & RECHARGE</span><h2 id="meal-dialog-title">用餐休息</h2></div><button type="button" class="icon-button" id="meal-dialog-close" aria-label="关闭用餐休息设置"><svg><use href="#i-close"></use></svg></button></div><p class="settings-dialog-intro" id="meal-dialog-intro">给午饭、晚饭留一点时间，休息期间暂停计薪。</p><form id="meal-form" novalidate><div class="meal-break-list"><div class="meal-break-card" id="lunch-card"><label class="meal-break-toggle" for="lunch-enabled"><span class="meal-break-name">午休<small>午饭</small></span><span class="meal-switch"><input id="lunch-enabled" type="checkbox" aria-label="开启午休" aria-controls="lunch-times"><span aria-hidden="true"></span></span></label><div class="meal-times" id="lunch-times" hidden><div class="time-row"><div class="time-wrap"><label for="lunch-start">午休开始</label><input id="lunch-start" type="time" value="12:00" disabled aria-describedby="meal-error lunch-summary"></div><svg class="time-arrow"><use href="#i-arrow"></use></svg><div class="time-wrap"><label for="lunch-end">午休结束</label><input id="lunch-end" type="time" value="13:00" disabled aria-describedby="meal-error lunch-summary"></div></div><p class="meal-break-summary" id="lunch-summary"></p></div></div><div class="meal-break-card" id="dinner-card"><label class="meal-break-toggle" for="dinner-enabled"><span class="meal-break-name">晚休<small>晚饭</small></span><span class="meal-switch"><input id="dinner-enabled" type="checkbox" aria-label="开启晚休" aria-controls="dinner-times"><span aria-hidden="true"></span></span></label><div class="meal-times" id="dinner-times" hidden><div class="time-row"><div class="time-wrap"><label for="dinner-start">晚休开始</label><input id="dinner-start" type="time" value="18:00" disabled aria-describedby="meal-error dinner-summary"></div><svg class="time-arrow"><use href="#i-arrow"></use></svg><div class="time-wrap"><label for="dinner-end">晚休结束</label><input id="dinner-end" type="time" value="18:30" disabled aria-describedby="meal-error dinner-summary"></div></div><p class="meal-break-summary" id="dinner-summary"></p></div></div></div><div class="settings-preview"><div><span>每日净计薪</span><strong id="meal-net-duration">9 小时</strong></div><p class="break-note" id="break-summary">按需开启午休和晚休，休息期间暂停计薪。</p></div><p class="form-error" id="meal-error" role="alert"></p><div class="calendar-actions settings-dialog-actions"><button type="button" class="calendar-cancel" id="meal-cancel">取消</button><button type="submit" class="calendar-save" id="meal-save">保存用餐设置<svg><use href="#i-check"></use></svg></button></div></form></dialog>
 <dialog class="settings-dialog interval-dialog" id="interval-dialog" aria-labelledby="interval-dialog-title" aria-describedby="interval-dialog-intro"><div class="dialog-top"><div><span class="settings-dialog-kicker" lang="en">GOLDEN MOMENTS</span><h2 id="interval-dialog-title">金币雨触发间隔</h2></div><button type="button" class="icon-button" id="interval-dialog-close" aria-label="关闭金币雨间隔设置"><svg><use href="#i-close"></use></svg></button></div><p class="settings-dialog-intro" id="interval-dialog-intro">每跨过一个小目标，就奖励自己一场金币雨。</p><form id="interval-form" novalidate><div class="coin-setting"><label class="coin-setting-label" for="interval"><svg><use href="#i-coins"></use></svg>金币雨触发间隔</label><div class="interval-input"><span data-currency-symbol>¥</span><input id="interval" name="interval" type="number" inputmode="decimal" min="0.01" max="100000000" step="0.01" value="10" placeholder="自定义" aria-label="每赚多少元触发金币雨" aria-describedby="interval-note interval-error"></div></div><div class="interval-presets" role="group" aria-label="常用金币雨间隔"><button type="button" data-interval="1" aria-pressed="false">¥ 1</button><button type="button" data-interval="10" class="active" aria-pressed="true" aria-label="使用 10 元间隔"><span>¥ 10</span></button><button type="button" data-interval="50" aria-pressed="false">¥ 50</button><button type="button" data-interval="100" aria-pressed="false">¥ 100</button></div><p class="form-error" id="interval-error" role="alert"></p><p class="setting-note" id="interval-note">每赚满 <span class="number" id="interval-description">10</span> <span data-currency-name>元</span>，奖励自己一场金光闪闪的金币雨。支持自定义金额，精确到 0.01 <span data-currency-name>元</span>。</p><div class="calendar-actions settings-dialog-actions"><button type="button" class="calendar-cancel" id="interval-cancel">取消</button><button type="submit" class="calendar-save" id="interval-save">保存间隔<svg><use href="#i-check"></use></svg></button></div></form></dialog>
 <dialog class="settings-dialog holiday-dialog" id="holiday-dialog" aria-labelledby="holiday-dialog-title" aria-describedby="holiday-dialog-intro"><div class="dialog-top"><div><span class="settings-dialog-kicker" lang="en">ALWAYS UP TO DATE</span><h2 id="holiday-dialog-title">假期数据</h2></div><button type="button" class="icon-button" id="holiday-dialog-close" aria-label="关闭假期数据设置"><svg><use href="#i-close"></use></svg></button></div><p class="settings-dialog-intro" id="holiday-dialog-intro">新一年的放假安排，一公布就为你留意。</p><form id="holiday-form" novalidate><div class="holiday-toggle-card"><label class="meal-break-toggle" for="holiday-auto"><span class="meal-break-name">自动加入新年份<small>同步中国大陆放假与调休补班安排</small></span><span class="meal-switch"><input id="holiday-auto" type="checkbox" checked aria-label="自动更新假期数据"><span aria-hidden="true"></span></span></label></div><div class="holiday-fields"><label class="holiday-field" for="holiday-frequency">检查频率<select id="holiday-frequency"><option value="1">每天</option><option value="7">每周</option><option value="30">每月</option></select></label><label class="holiday-field" for="holiday-source">下载线路<select id="holiday-source"><option value="auto">自动选择</option><option value="github">GitHub 直连</option></select></label></div><div class="holiday-update-box"><div class="holiday-update-heading"><h3>已收录与待更新年份</h3><a href="https://github.com/NateScarlet/holiday-cn" target="_blank" rel="noopener noreferrer">查看数据来源 ↗</a></div><ul class="holiday-year-list" id="holiday-year-list" aria-label="假期数据年份与状态"></ul><p class="holiday-last-check" id="holiday-last-check"></p></div><div class="holiday-manual"><label class="holiday-field" for="holiday-year">指定年份<input class="holiday-year-input" type="number" id="holiday-year" min="2007" max="9998" step="1" inputmode="numeric" aria-describedby="holiday-update-status"></label><button type="button" id="holiday-refresh">立即检查</button></div><p class="holiday-update-status" id="holiday-update-status" role="status" aria-live="polite"></p><p class="holiday-fine" id="holiday-cache-note">已获取的数据会保存在本机，断网仍可使用。</p><p class="holiday-fine">页面打开时按频率检查，已保存的手动排班保持不变。</p><details class="holiday-help"><summary>数据与检查说明</summary><p class="holiday-fine">检查当前年、下一年及查看的年份；页面关闭时不运行，尚未公布时继续等待。“立即检查”会核对该年和下一年公告中的跨年安排，直接更新本机数据；上方偏好需保存后生效。数据由开源项目依据国务院公告整理，下载只请求公开年份文件。</p></details><div class="calendar-actions settings-dialog-actions"><button type="button" class="calendar-cancel" id="holiday-cancel">取消</button><button type="submit" class="calendar-save" id="holiday-save">保存更新设置<svg><use href="#i-check"></use></svg></button></div></form></dialog>
@@ -268,6 +286,112 @@ const HOLIDAY_CALENDARS = {
 const defaults = { salary:25000, days:22, start:'09:00', end:'18:00', interval:10, lunch:{enabled:false,start:'12:00',end:'13:00'}, dinner:{enabled:false,start:'18:00',end:'18:30'} };
 const mealKeys=['lunch','dinner'], mealNames={lunch:'午休',dinner:'晚休'};
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+// METEOR_START
+function buildMeteorRoute(start,width,height,random){
+ const rng=random||Math.random,margin=Math.min(24,width*.08,height*.08);
+ const clamp=(value,max)=>Math.max(margin,Math.min(max-margin,value));
+ const p0={x:clamp(start.x,width),y:clamp(start.y,height)};
+ let p3=null;
+ // Choose a fresh destination anywhere in the viewport, with room for a visible arc.
+ for(let i=0;i<10;i++){
+  const candidate={x:margin+rng()*(width-margin*2),y:margin+rng()*(height-margin*2)};
+  if(Math.hypot((candidate.x-p0.x)/width,(candidate.y-p0.y)/height)>=.42){p3=candidate;break;}
+ }
+ if(!p3)p3={x:p0.x<width/2?width-margin:margin,y:p0.y<height/2?height-margin:margin};
+ const dx=p3.x-p0.x,dy=p3.y-p0.y,length=Math.hypot(dx,dy),nx=-dy/length,ny=dx/length;
+ const bend1=(rng()-.5)*Math.min(width,height)*.8,bend2=(rng()-.5)*Math.min(width,height)*.8;
+ const t1=.2+rng()*.18,t2=.62+rng()*.18;
+ return {p0:p0,p1:{x:clamp(p0.x+dx*t1+nx*bend1,width),y:clamp(p0.y+dy*t1+ny*bend1,height)},p2:{x:clamp(p0.x+dx*t2+nx*bend2,width),y:clamp(p0.y+dy*t2+ny*bend2,height)},p3:p3,duration:7200+rng()*3200};
+}
+function sampleMeteorRoute(route,count){
+ const points=[];let previousAngle=0;
+ for(let i=0;i<count;i++){
+  const t=i/(count-1),u=1-t,a=route.p0,b=route.p1,c=route.p2,d=route.p3;
+  const x=u*u*u*a.x+3*u*u*t*b.x+3*u*t*t*c.x+t*t*t*d.x,y=u*u*u*a.y+3*u*u*t*b.y+3*u*t*t*c.y+t*t*t*d.y;
+  const vx=3*u*u*(b.x-a.x)+6*u*t*(c.x-b.x)+3*t*t*(d.x-c.x),vy=3*u*u*(b.y-a.y)+6*u*t*(c.y-b.y)+3*t*t*(d.y-c.y);
+  let angle=Math.atan2(vy,vx)*180/Math.PI;
+  if(i){while(angle-previousAngle>180)angle-=360;while(angle-previousAngle< -180)angle+=360;}
+  previousAngle=angle;points.push({offset:t,x:x,y:y,angle:angle});
+ }
+ return points;
+}
+function meteorClearance(point,boxes){
+ let distance=Infinity;
+ boxes.forEach(function(box){const dx=Math.max(box.left-point.x,0,point.x-box.right),dy=Math.max(box.top-point.y,0,point.y-box.bottom);distance=Math.min(distance,Math.hypot(dx,dy));});
+ const value=Math.min(1,distance/32);return .22+.78*value*value*(3-2*value);
+}
+function createMeteorBackground(layer,motionPreference){
+ if(!layer||typeof layer.animate!=='function')return null;
+ const tailCount=19,lanes=[],meteors=[],animations=new Set();let disposed=false,resizeFrame=0,scrollTimer=0,boxes=[];
+ const ease=getComputedStyle(document.documentElement).getPropertyValue('--ease-in-out').trim()||'cubic-bezier(.77,0,.175,1)';
+ const enterEase=getComputedStyle(document.documentElement).getPropertyValue('--ease').trim()||'ease-out';
+ const enterDuration=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--motion-ui'))||250;
+ for(let index=0;index<2;index++){
+  const meteor={point:null,head:null,animation:null,lanes:[]},size=index===0?1:.88;meteors.push(meteor);
+  for(let i=tailCount;i>=0;i--){
+   const node=document.createElement('span'),isHead=i===0;
+   node.className=isHead?'meteor-core':'meteor-tail';node.setAttribute('data-meteor',String(index+1));
+   node.style.width=((isHead?5:10+18*(1-i/tailCount))*size)+'px';node.style.height=((isHead?5:1+1.5*(1-i/tailCount))*size)+'px';
+   layer.appendChild(node);const lane={node:node,index:i,meteor:index,queue:[]};lanes.push(lane);meteor.lanes.push(lane);if(isHead)meteor.head=node;
+  }
+ }
+ function readBoxes(){
+  boxes=Array.from(document.querySelectorAll('.topbar,.intro,.earnings,.metric-value,.shift-card,#settings-panel')).map(function(element){return element.getBoundingClientRect();}).filter(function(r){return r.width>0&&r.height>0&&r.right>0&&r.left<layer.clientWidth&&r.bottom>0&&r.top<layer.clientHeight;});
+ }
+ function framesFor(routePoints,lane){
+  const isHead=lane.index===0,alpha=(isHead?.78:.42*Math.pow(1-lane.index/(tailCount+1),1.3))*(lane.meteor===0?1:.88);
+  return routePoints.map(function(p){return {offset:p.offset,transform:'translate3d('+p.x.toFixed(2)+'px,'+p.y.toFixed(2)+'px,0)'+(isHead?' translate(-50%,-50%)':' rotate('+p.angle.toFixed(2)+'deg) translate(-100%,-50%)'),opacity:alpha*(isHead?.5+.5*Math.sin(p.offset*Math.PI):Math.sin(p.offset*Math.PI))*meteorClearance(p,boxes)};});
+ }
+ function cancelAll(){animations.forEach(function(animation){animation.cancel();});animations.clear();lanes.forEach(function(lane){lane.queue=[];});meteors.forEach(function(meteor){meteor.animation=null;});}
+ function nextLeg(meteor){
+  if(disposed||document.hidden||motionPreference.matches)return;
+  const width=layer.clientWidth,height=layer.clientHeight;if(width<48||height<48)return;
+  readBoxes();
+  const route=buildMeteorRoute(meteor.point||{x:Math.random()*width,y:Math.random()*height},width,height),routePoints=sampleMeteorRoute(route,65);meteor.point=route.p3;
+  const start=document.timeline.currentTime;
+  meteor.lanes.forEach(function(lane){
+   // Each star turns on its own clock while its previous trail catches up.
+   while(lane.queue.length>1){const old=lane.queue.shift();old.animation.cancel();animations.delete(old.animation);}
+   const animation=lane.node.animate(framesFor(routePoints,lane),{duration:route.duration,delay:lane.index*38,easing:ease,fill:'forwards'});
+   if(start!==null)animation.startTime=start;
+   animations.add(animation);lane.queue.push({animation:animation,points:routePoints});
+   if(lane.index===0){meteor.animation=animation;animation.onfinish=function(){nextLeg(meteor);};}
+  });
+ }
+ function startAll(){meteors.forEach(nextLeg);}
+ function reveal(){layer.hidden=false;layer.animate([{opacity:0},{opacity:1}],{duration:enterDuration,easing:enterEase});}
+ function refreshMask(){
+  scrollTimer=0;if(disposed||motionPreference.matches)return;readBoxes();
+  lanes.forEach(function(lane){lane.queue.forEach(function(entry){entry.animation.effect.setKeyframes(framesFor(entry.points,lane));});});
+ }
+ function onScroll(){clearTimeout(scrollTimer);scrollTimer=setTimeout(refreshMask,120);}
+ function onResize(){
+  if(resizeFrame||disposed||motionPreference.matches)return;
+  resizeFrame=requestAnimationFrame(function(){
+   resizeFrame=0;meteors.forEach(function(meteor){const rect=meteor.head.getBoundingClientRect();meteor.point={x:rect.left+rect.width/2,y:rect.top+rect.height/2};});cancelAll();startAll();
+  });
+ }
+ function onVisibility(){
+  if(disposed||motionPreference.matches)return;
+  if(document.hidden){animations.forEach(function(animation){if(animation.playState==='running')animation.pause();});}
+  else{animations.forEach(function(animation){if(animation.playState==='paused')animation.play();});meteors.forEach(function(meteor){if(!meteor.animation||meteor.animation.playState==='finished')nextLeg(meteor);});}
+ }
+ function onMotion(){cancelAll();layer.hidden=motionPreference.matches;if(!motionPreference.matches){meteors.forEach(function(meteor){meteor.point=null;});reveal();startAll();}}
+ function destroy(){
+  disposed=true;cancelAll();cancelAnimationFrame(resizeFrame);clearTimeout(scrollTimer);
+  window.removeEventListener('resize',onResize);window.removeEventListener('scroll',onScroll);document.removeEventListener('visibilitychange',onVisibility);motionPreference.removeEventListener('change',onMotion);
+  window.removeEventListener('pagehide',onPageHide);window.removeEventListener('pageshow',onPageShow);layer.replaceChildren();
+ }
+ function onPageHide(event){if(event.persisted)animations.forEach(function(animation){if(animation.playState==='running')animation.pause();});else destroy();}
+ function onPageShow(event){if(event.persisted)onVisibility();}
+ window.addEventListener('resize',onResize,{passive:true});window.addEventListener('scroll',onScroll,{passive:true});document.addEventListener('visibilitychange',onVisibility);motionPreference.addEventListener('change',onMotion);
+ window.addEventListener('pagehide',onPageHide);window.addEventListener('pageshow',onPageShow);
+ if(motionPreference.matches)layer.hidden=true;else{reveal();startAll();}
+ return {destroy:destroy};
+}
+createMeteorBackground(document.getElementById('meteor-layer'),reducedMotion);
+// METEOR_END
+
 const money = new Intl.NumberFormat('zh-CN', { minimumFractionDigits:2, maximumFractionDigits:2 });
 const timeFormat = new Intl.DateTimeFormat('zh-CN', { hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23' });
 const dateFormat = new Intl.DateTimeFormat('zh-CN', { month:'long', day:'numeric', weekday:'short' });
@@ -863,14 +987,242 @@ function render() {
  else if(lastBucket!==null&&bucket>lastBucket&&s.active) celebrate('milestone',bucket*config.interval,s.earnedCents/100);
  lastBucket=bucket;
 }
-function coinChime() {
- if(!soundEnabled)return;
- try {
-  if(!audioContext)audioContext=new (window.AudioContext||window.webkitAudioContext)();
-  audioContext.resume().catch(function(){});
-  [1318.51,1760,2093,2637.02].forEach(function(f,i){const osc=audioContext.createOscillator(),gain=audioContext.createGain(),t=audioContext.currentTime+i*.055;osc.type='sine';osc.frequency.setValueAtTime(f,t);gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(.035,t+.012);gain.gain.exponentialRampToValueAtTime(.0001,t+.6);osc.connect(gain);gain.connect(audioContext.destination);osc.start(t);osc.stop(t+.65);});
- } catch(e) { soundEnabled=false;$('sound-button').setAttribute('aria-pressed','false');$('sound-icon').setAttribute('href','#i-mute');showToast('当前浏览器暂不支持音效'); }
+// MUSIC_ENGINE_START
+// Original arrangements. Each phrase is eight beats; no external audio is loaded.
+const MUSIC_TRACKS = [
+ {id:'afternoon',name:'午后微光',instrument:'柔和钢琴',bpm:76,tone:'piano',
+  phrases:[[[76,1],[79,.5],[81,.5],[79,1],[76,1],[74,1],[72,1],[76,1],[72,1]],[[74,1],[76,1],[79,1.5],[76,.5],[74,1],[72,1],[71,1],[72,1]],[[76,1.5],[79,.5],[83,1],[81,1],[79,1],[76,1],[74,1],[76,1]],[[77,1],[76,1],[74,1],[71,1],[72,2],[0,1],[72,1]]],
+  chords:[[48,55,60,64],[45,52,57,60],[53,60,64,69],[43,50,55,59],[48,55,60,64],[45,52,57,60],[53,60,64,69],[48,55,60,64]]},
+ {id:'clouds',name:'云间漫步',instrument:'空灵钟琴',bpm:84,tone:'celesta',
+  phrases:[[[74,1],[78,1],[81,1],[78,.5],[76,.5],[74,1],[69,1],[76,1],[74,1]],[[76,1],[78,.5],[81,.5],[83,1.5],[81,.5],[78,1],[76,1],[74,2]],[[81,1],[83,1],[86,1],[83,1],[81,1.5],[78,.5],[76,1],[78,1]],[[76,1],[78,1],[74,1],[69,1],[74,2],[0,1],[74,1]]],
+  chords:[[50,57,62,66],[47,54,59,62],[55,62,66,69],[45,52,57,61],[50,57,62,66],[47,54,59,62],[55,62,66,69],[50,57,62,66]]},
+ {id:'night',name:'夜色轻舟',instrument:'温暖木琴',bpm:68,tone:'marimba',
+  phrases:[[[69,1.5],[72,.5],[76,1],[74,1],[72,1],[71,1],[69,2]],[[67,1],[69,1],[72,1.5],[71,.5],[69,1],[67,1],[64,1],[69,1]],[[72,1],[76,1],[79,1.5],[76,.5],[74,1],[72,1],[71,1],[72,1]],[[71,1],[69,1],[67,1],[64,1],[69,2],[0,1],[69,1]]],
+  chords:[[45,52,57,60],[53,60,64,69],[48,55,60,64],[43,50,55,59],[45,52,57,60],[53,60,64,69],[43,50,55,59],[45,52,57,60]]}
+];
+function musicNote(context,bus,midi,start,hold,level,tone,pan){
+ const frequency=440*Math.pow(2,(midi-69)/12),envelope=context.createGain(),position=context.createStereoPanner();
+ const release=tone==='celesta'?1.75:tone==='marimba'?1.15:1.4;
+ const partials=tone==='celesta'?[[1,1],[2,.22],[3.01,.05]]:tone==='marimba'?[[1,1],[4,.065]]:[[1,1],[2,.19],[3,.055]];
+ envelope.gain.setValueAtTime(0,start);
+ envelope.gain.linearRampToValueAtTime(level,start+.014);
+ envelope.gain.exponentialRampToValueAtTime(Math.max(.0001,level*.28),start+Math.max(.12,hold*.7));
+ envelope.gain.exponentialRampToValueAtTime(.0001,start+hold+release);
+ envelope.gain.linearRampToValueAtTime(0,start+hold+release+.03);
+ position.pan.value=pan;envelope.connect(position);position.connect(bus);
+ partials.forEach(function(partial){
+  const oscillator=context.createOscillator(),gain=context.createGain();
+  oscillator.type='sine';oscillator.frequency.value=frequency*partial[0];gain.gain.value=partial[1];
+  oscillator.connect(gain);gain.connect(envelope);oscillator.start(start);oscillator.stop(start+hold+release+.04);
+ });
 }
+async function renderMusicBuffer(track,loop,OfflineContext){
+ const rate=32000,beat=60/track.bpm,beats=loop?32:8,tail=3.4,length=Math.round(beats*beat*rate);
+ const context=new OfflineContext(2,length+Math.ceil(tail*rate),rate),bus=context.createGain(),filter=context.createBiquadFilter();
+ filter.type='lowpass';filter.frequency.value=4600;filter.Q.value=.4;bus.connect(filter);
+ const compressor=context.createDynamicsCompressor();compressor.threshold.value=-16;compressor.knee.value=18;compressor.ratio.value=2.5;compressor.attack.value=.015;compressor.release.value=.25;
+ filter.connect(compressor);compressor.connect(context.destination);
+ const reverb=context.createConvolver(),wet=context.createGain(),impulse=context.createBuffer(2,Math.ceil(rate*1.6),rate);
+ let seed=track.id.charCodeAt(0)*997;
+ for(let channel=0;channel<2;channel++){
+  const data=impulse.getChannelData(channel);
+  for(let i=0;i<data.length;i++){seed=(Math.imul(seed,1664525)+1013904223)>>>0;data[i]=((seed/4294967296)*2-1)*Math.pow(1-i/data.length,3)*.4;}
+ }
+ reverb.buffer=impulse;wet.gain.value=.14;filter.connect(reverb);reverb.connect(wet);wet.connect(compressor);
+ let cursor=0;
+ track.phrases.slice(0,loop?4:1).forEach(function(phrase){
+  phrase.forEach(function(note,index){if(note[0])musicNote(context,bus,note[0],cursor*beat,note[1]*beat*.7,.19*(index%3===0?1:.87),track.tone,.1);cursor+=note[1];});
+ });
+ for(let bar=0;bar<(loop?8:2);bar++){
+  const chord=track.chords[bar],time=bar*4*beat;
+  musicNote(context,bus,chord[0],time,beat*2,.09,'piano',-.16);
+  [1,2,3,2].forEach(function(index,step){musicNote(context,bus,chord[index],time+(step+.5)*beat,beat*.8,.047,'piano',-.22+step*.1);});
+ }
+ const rendered=await context.startRendering();
+ if(!loop)return rendered;
+ const buffer=context.createBuffer(2,length,rate);
+ // Fold the reverb/decay tail back into the beginning for a seamless native loop.
+ for(let channel=0;channel<2;channel++){
+  const source=rendered.getChannelData(channel),target=buffer.getChannelData(channel);target.set(source.subarray(0,length));
+  for(let i=length;i<source.length;i++)target[(i-length)%length]+=source[i];
+ }
+ return buffer;
+}
+function createMusicPlayer(context,loadBuffer,onChange){
+ const master=context.createGain();master.gain.value=.45;master.connect(context.destination);
+ let generation=0,current=null,loading=false,kind='';
+ function emit(){onChange({playing:!!current,loading:loading,kind:kind});}
+ function fadeVoice(voice){
+  if(!voice)return;const now=context.currentTime;
+  voice.gain.gain.cancelScheduledValues(now);voice.gain.gain.setTargetAtTime(0,now,.035);
+  voice.source.stop(now+.18);
+ }
+ return {
+  get state(){return {playing:!!current,loading:loading,kind:kind};},
+  setVolume(value){master.gain.setTargetAtTime(Math.max(0,Math.min(1,value)),context.currentTime,.04);},
+  stop(){generation++;loading=false;kind='';const previous=current;current=null;fadeVoice(previous);emit();},
+  async play(track,requestKind,onEnded){
+   if(requestKind==='rain'&&(current||loading))return;
+   const token=++generation;loading=true;kind=requestKind;emit();
+   try{
+    await context.resume();
+    if(token!==generation)return;
+    if(context.state!=='running')throw new Error('Audio context is not running');
+    const buffer=await loadBuffer(track,requestKind==='continuous');
+    if(token!==generation)return;
+    const source=context.createBufferSource(),gain=context.createGain(),now=context.currentTime;
+    source.buffer=buffer;source.loop=requestKind==='continuous';source.connect(gain);gain.connect(master);
+    gain.gain.setValueAtTime(0,now);gain.gain.linearRampToValueAtTime(1,now+.12);
+    const previous=current,voice={source:source,gain:gain};current=voice;loading=false;fadeVoice(previous);
+    source.onended=function(){source.disconnect();gain.disconnect();if(current===voice){current=null;kind='';emit();if(onEnded)onEnded();}};
+    source.start(now+.015);emit();
+   }catch(error){if(token!==generation)return;this.stop();throw error;}
+  }
+ };
+}
+// MUSIC_ENGINE_END
+
+// COIN_SOUND_ENGINE_START
+function createCoinSoundPlayer(context,onChange){
+ const master=context.createGain();master.gain.value=.45;master.connect(context.destination);
+ const voices=new Set();let generation=0,loading=false,kind='';
+ function state(){return {playing:voices.size>0,loading:loading,kind:kind};}
+ function emit(){onChange(state());}
+ function stop(){
+  generation++;loading=false;kind='';const now=context.currentTime;
+  for(const voice of voices){
+   voice.gain.gain.cancelScheduledValues(now);voice.gain.gain.setTargetAtTime(0,now,.008);
+   voice.source.stop(now+.04);
+  }
+  voices.clear();emit();
+ }
+ return {
+  get state(){return state();},
+  setVolume(value){master.gain.setTargetAtTime(Math.max(0,Math.min(1,value)),context.currentTime,.04);},
+  stop:stop,
+  async play(requestKind){
+   if(requestKind==='rain'&&(voices.size||loading))return;
+   stop();const token=generation;loading=true;kind=requestKind;emit();
+   try{
+    await context.resume();if(token!==generation)return;
+    if(context.state!=='running')throw new Error('Audio context is not running');
+    // Preserve the original four-note coin chime and its level at 45% volume.
+    [1318.51,1760,2093,2637.02].forEach(function(frequency,index){
+     const source=context.createOscillator(),gain=context.createGain(),t=context.currentTime+index*.055;
+     const voice={source:source,gain:gain};voices.add(voice);
+     source.type='sine';source.frequency.setValueAtTime(frequency,t);
+     gain.gain.setValueAtTime(0,t);gain.gain.linearRampToValueAtTime(.035/.45,t+.012);
+     gain.gain.exponentialRampToValueAtTime(.0001/.45,t+.6);
+     source.connect(gain);gain.connect(master);
+     source.onended=function(){
+      voices.delete(voice);source.disconnect();gain.disconnect();
+      if(token===generation&&!voices.size){kind='';emit();}
+     };
+     source.start(t);source.stop(t+.65);
+    });
+    loading=false;emit();
+   }catch(error){if(token!==generation)return;stop();throw error;}
+  }
+ };
+}
+// COIN_SOUND_ENGINE_END
+
+const musicStorageKey='golden-hour-music-v1',musicBuffers=new Map();
+let musicSettings={type:'coin',track:'afternoon',mode:'rain',volume:45},musicPlayer=null,musicPlayback={playing:false,loading:false,kind:''};
+let coinSoundPlayer=null,coinPlayback={playing:false,loading:false,kind:''},soundGeneration=0;
+try{
+ const saved=JSON.parse(localStorage.getItem(musicStorageKey)||'null');
+ if(saved&&typeof saved==='object'){
+  if(saved.type==='coin'||saved.type==='music')musicSettings.type=saved.type;
+  if(MUSIC_TRACKS.some(function(track){return track.id===saved.track;}))musicSettings.track=saved.track;
+  if(saved.mode==='rain'||saved.mode==='continuous')musicSettings.mode=saved.mode;
+  if(typeof saved.volume==='number'&&Number.isFinite(saved.volume))musicSettings.volume=Math.max(0,Math.min(100,Math.round(saved.volume)));
+ }
+}catch(error){}
+function selectedMusicTrack(){return MUSIC_TRACKS.find(function(track){return track.id===musicSettings.track;})||MUSIC_TRACKS[0];}
+function selectedSoundPlayback(){return musicSettings.type==='coin'?coinPlayback:musicPlayback;}
+function saveMusicSettings(){try{localStorage.setItem(musicStorageKey,JSON.stringify(musicSettings));}catch(error){showToast('声音设置仅本次生效');}}
+function syncMusicUI(){
+ const coin=musicSettings.type==='coin',playback=selectedSoundPlayback(),label=soundEnabled?'关闭声音':'开启声音',busy=playback.loading,preview=playback.kind==='preview';
+ $('sound-button').setAttribute('aria-pressed',String(soundEnabled));$('sound-button').setAttribute('aria-label',label);$('sound-button').title=label;
+ $('sound-icon').setAttribute('href',soundEnabled?'#i-volume':'#i-mute');
+ $('music-toggle').textContent=label;$('music-toggle').setAttribute('aria-pressed',String(soundEnabled));
+ $('music-preview-label').textContent=preview?(busy?'取消试听':'停止试听'):'试听';
+ $('music-preview-icon').setAttribute('href',preview?'#i-pause':'#i-play');
+ $('music-status').textContent=busy?(coin?'正在准备音效…':'正在准备音乐…'):preview&&playback.playing?'试听中':!soundEnabled?'声音已关闭':musicSettings.volume===0?'已静音':!coin&&musicSettings.mode==='continuous'&&playback.playing?'持续播放中':playback.playing?(coin?'金币音效播放中':'金币雨演奏中'):'等待金币雨';
+ document.querySelectorAll('input[name="sound-type"]').forEach(function(input){input.checked=input.value===musicSettings.type;});
+ document.querySelectorAll('input[name="music-mode"]').forEach(function(input){input.checked=input.value===musicSettings.mode;});
+ document.querySelectorAll('input[name="music-track"]').forEach(function(input){input.checked=input.value===musicSettings.track;});
+ $('music-details').hidden=coin;
+ $('music-volume').value=musicSettings.volume;$('music-volume-value').textContent=musicSettings.volume+'%';
+ $('music-settings-button').title=coin?'声音设置：金币音效':'声音设置：'+selectedMusicTrack().name;
+}
+function ensureAudioContext(){
+ if(audioContext)return audioContext;
+ const Context=window.AudioContext||window.webkitAudioContext;
+ if(!Context)throw new Error('Web Audio is unavailable');
+ audioContext=new Context({latencyHint:'interactive'});return audioContext;
+}
+function ensureCoinSoundPlayer(){
+ if(!coinSoundPlayer){coinSoundPlayer=createCoinSoundPlayer(ensureAudioContext(),function(state){coinPlayback=state;syncMusicUI();});}
+ return coinSoundPlayer;
+}
+function ensureMusicPlayer(){
+ if(musicPlayer)return musicPlayer;
+ const OfflineContext=window.OfflineAudioContext||window.webkitOfflineAudioContext;
+ if(!OfflineContext)throw new Error('Offline audio is unavailable');
+ musicPlayer=createMusicPlayer(ensureAudioContext(),function(track,loop){
+  const key=track.id+(loop?'-loop':'-phrase');
+  if(!musicBuffers.has(key))musicBuffers.set(key,renderMusicBuffer(track,loop,OfflineContext).catch(function(error){musicBuffers.delete(key);throw error;}));
+  return musicBuffers.get(key);
+ },function(state){musicPlayback=state;syncMusicUI();});
+ return musicPlayer;
+}
+function stopSounds(){soundGeneration++;if(musicPlayer)musicPlayer.stop();if(coinSoundPlayer)coinSoundPlayer.stop();}
+function resumeContinuousMusic(){if(soundEnabled&&musicSettings.type==='music'&&musicSettings.mode==='continuous')playSelectedSound('continuous');}
+async function playSelectedSound(kind){
+ const token=soundGeneration,type=musicSettings.type;
+ try{
+  const player=type==='coin'?ensureCoinSoundPlayer():ensureMusicPlayer();player.setVolume(musicSettings.volume/100);
+  if(type==='coin')await player.play(kind);
+  else await player.play(selectedMusicTrack(),kind,function(){if(kind==='preview'&&token===soundGeneration)resumeContinuousMusic();});
+ }catch(error){
+  if(token!==soundGeneration)return;
+  soundEnabled=false;stopSounds();syncMusicUI();showToast('当前浏览器暂时无法播放声音');
+ }
+}
+function playEnabledSound(){playSelectedSound(musicSettings.type==='music'&&musicSettings.mode==='continuous'?'continuous':'preview');}
+function toggleSound(){
+ soundEnabled=!soundEnabled;
+ if(soundEnabled)playEnabledSound();else stopSounds();
+ syncMusicUI();
+}
+function applyMusicChoice(){
+ stopSounds();saveMusicSettings();syncMusicUI();
+ if(soundEnabled)playEnabledSound();
+}
+function coinChime(){
+ if(!soundEnabled||document.hidden||musicSettings.type==='music'&&musicSettings.mode==='continuous')return;
+ playSelectedSound('rain');
+}
+$('music-settings-button').addEventListener('click',function(){syncMusicUI();$('music-dialog').showModal();});
+$('music-dialog-close').addEventListener('click',function(){$('music-dialog').close();});
+$('music-toggle').addEventListener('click',toggleSound);
+$('music-preview').addEventListener('click',function(){
+ if(selectedSoundPlayback().kind==='preview'){stopSounds();resumeContinuousMusic();}
+ else playSelectedSound('preview');
+});
+document.querySelectorAll('input[name="sound-type"]').forEach(function(input){input.addEventListener('change',function(){musicSettings.type=this.value;applyMusicChoice();});});
+document.querySelectorAll('input[name="music-track"]').forEach(function(input){input.addEventListener('change',function(){musicSettings.track=this.value;applyMusicChoice();});});
+document.querySelectorAll('input[name="music-mode"]').forEach(function(input){input.addEventListener('change',function(){musicSettings.mode=this.value;applyMusicChoice();});});
+$('music-volume').addEventListener('input',function(){musicSettings.volume=Number(this.value);if(musicPlayer)musicPlayer.setVolume(musicSettings.volume/100);if(coinSoundPlayer)coinSoundPlayer.setVolume(musicSettings.volume/100);syncMusicUI();});
+$('music-volume').addEventListener('change',saveMusicSettings);
+$('music-dialog').addEventListener('click',function(event){if(event.target===this){const r=this.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)this.close();}});
+$('music-dialog').addEventListener('close',function(){if(selectedSoundPlayback().kind==='preview'){stopSounds();resumeContinuousMusic();}});
+window.addEventListener('pagehide',function(){soundEnabled=false;stopSounds();syncMusicUI();});
+syncMusicUI();
+
+
 const canvas=$('rain-canvas'), ctx=canvas.getContext('2d');
 let particles=[],rainFrame=0,previousFrame=0,viewportWidth=innerWidth,viewportHeight=innerHeight;
 function sizeCanvas(){viewportWidth=innerWidth;viewportHeight=innerHeight;const dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(viewportWidth*dpr);canvas.height=Math.round(viewportHeight*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);}
@@ -978,7 +1330,7 @@ $('calendar-save').addEventListener('click',saveCalendar);
 $('schedule-dialog').addEventListener('click',function(event){if(event.target===this){const rect=this.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)this.close();}});
 $('demo-button').addEventListener('click',function(){demo=!demo;if(demo)startDemoClock();resetBaseline();syncDemo();render();showToast(demo?'120 倍加速演示已开启':'已返回真实计薪');});
 $('rain-button').addEventListener('click',function(){celebrate('preview');});
-$('sound-button').addEventListener('click',function(){soundEnabled=!soundEnabled;this.setAttribute('aria-pressed',String(soundEnabled));this.setAttribute('aria-label',soundEnabled?'关闭金币音效':'开启金币音效');this.title=soundEnabled?'关闭金币音效':'开启金币音效';$('sound-icon').setAttribute('href',soundEnabled?'#i-volume':'#i-mute');if(soundEnabled)coinChime();showToast(soundEnabled?'金币音效已开启':'金币音效已关闭');});
+$('sound-button').addEventListener('click',toggleSound);
 $('fullscreen-button').addEventListener('click',async function(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else showToast('当前浏览器不支持全屏，可以使用浏览器的全屏功能');}catch(e){showToast('请使用浏览器菜单进入全屏');}});
 document.addEventListener('fullscreenchange',function(){const label=document.fullscreenElement?'退出全屏':'进入全屏';$('fullscreen-button').setAttribute('aria-label',label);$('fullscreen-button').title=label;});
 $('formula-button').addEventListener('click',function(){$('formula-dialog').showModal();});
