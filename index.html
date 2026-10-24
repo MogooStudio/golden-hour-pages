@@ -713,7 +713,7 @@ function snapshot(now) {
  const breakEnd=currentBreak?new Date(shift.start.getTime()+currentBreak.end*1000):null;
  const elapsed=days===0||(!demo&&!isWorkday)?0:paidElapsedSeconds(position,breaks);
  const earnedCents=days>0&&duration>0?Math.floor(elapsed*config.salary*100/days/duration+1e-7):0;
- const status=demo?(days===0?'演示中 · 本月无排班':onBreak?'演示 · '+breakName+'中':'演示中 · 120×'):days===0?'本月无排班 · 暂停计薪':!isWorkday?'休息日 · 暂停计薪':now<shift.start?'尚未开工':now>=shift.end?'今日已收工':onBreak?breakName+'中 · 暂停计薪':'正在赚钱 · LIVE';
+ const status=demo?(days===0?'演示中 · 本月无排班':onBreak?'演示 · '+breakName+'中':'演示中 · 120×'):days===0?'本月无排班 · 暂停计薪':!isWorkday?'休息日 · 暂停计薪':now<shift.start?'尚未开工':now>=shift.end?'已收工':onBreak?breakName+'中 · 暂停计薪':'正在赚钱 · LIVE';
  return {shift:shift,span:span,duration:duration,elapsed:elapsed,position:position,rate:rate,days:days,earnedCents:earnedCents,isWorkday:isWorkday,status:status,key:(demo?'demo-'+cycle:'real-')+shift.key,active:running&&!onBreak,onBreak:onBreak,breakName:breakName,breakEnd:breakEnd};
 }
 function save() {
